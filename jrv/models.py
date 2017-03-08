@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
-
+import time
+import os
 from django.db import models
 
 def get_image_path(self,filename):
@@ -19,7 +20,6 @@ class Acta(models.Model):
     moreno = models.IntegerField()
     blancos = models.IntegerField()
     nulos = models.IntegerField()
-    zona = models.CharField(max_length=200,blank=True,null=True)
     foto = models.ImageField(upload_to=get_image_path)
     
     # metadata
