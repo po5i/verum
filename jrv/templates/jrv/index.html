@@ -16,7 +16,9 @@
 <body>
     <h1>Subir resultados</h1>
 
-      <form>
+      <form id="formulario" enctype="multipart/form-data">
+        {% csrf_token %}
+        
         <div class="form-group">
           <label for="inputProvincia">Provincia *</label>
           <input type="text" name="provincia" class="form-control" id="inputProvincia" placeholder="Provincia">
@@ -74,7 +76,7 @@
         <input type="hidden" name="latitude" id="hiddenLatitude">
         <input type="hidden" name="longitude" id="hiddenLongitude">
         
-        <button type="button" class="btn btn-default" onclick="enviar();">Submit</button>
+        <button type="submit" class="btn btn-default">Submit</button>
       </form>
 
     <a href="/resultados/">Ver resultados</a>
@@ -94,8 +96,41 @@
         document.getElementById("hiddenLongitude").value = position.coords.longitude; 
     }
     
-    function enviar() {
-        console.log("done");
+    function upload(event) {
+        event.preventDefault();
+        var data = {
+            provincia: $('#inputProvincia').val(),
+            parroquia: $('#inputParroquia').val(),
+            circunscripcion: $('#inputCircunscripcion').val(),
+            zona: $('#inputZona').val(),
+            canton: $('#inputCanton').val(),
+            junta: $('#inputJunta').val(),
+            lasso: $('#inputLasso').val(),
+            moreno: $('#inputMoreno').val(),
+            blancos: $('#inputBlancos').val(),
+            nulos: $('#inputNulos').val(),
+            autor: $('#inputAutor').val(),
+            useragent: $('#hiddenUseragent').val(),
+            latitude: $('#hiddenLatitude').val(),
+            longitude: $('#hiddenLongitude').val()
+        };
+        console.log(data);
+        
+        $.ajax({
+            url: '/register/',
+            type: 'POST',
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                console.log('success', data);
+            }
+        });
         return false;
     }
+        
+    $(function() {
+        $('form').submit(upload);
+    });
 </script>
