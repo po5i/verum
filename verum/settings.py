@@ -22,23 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'g40marhku38ow!j5dql#iy0asl8u=y)4a%@3e(7+&ycnhfkp&4'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        '*'
+]
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    'jrv.apps.JrvConfig',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,16 +60,76 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'verum.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if 'RDS_HOSTNAME' in os.environ:    # AWS - production
+    DEBUG = False
+    
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SECURE = True
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
     }
-}
+    
+    INSTALLED_APPS = [
+        'jrv.apps.JrvConfig',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'storages',
+    ]
+    
+    # AWS S3 storage
+    AWS_STORAGE_BUCKET_NAME = ""
+    AWS_STORAGE_BUCKET_NAME_UPLOADS = os.environ['AWS_BUCKET']
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+    AWS_S3_CUSTOM_DOMAIN = ""
+    AWS_S3_CUSTOM_DOMAIN_UPLOADS = 's3-us-west-2.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME_UPLOADS
+    
+    #https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/
+    AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+            'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+            'Cache-Control': 'max-age=94608000',
+    }
+    
+    MEDIAFILES_LOCATION = 'uploads'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN_UPLOADS , MEDIAFILES_LOCATION)
+    DEFAULT_FILE_STORAGE = 'jrv.storage.MediaStorage'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+else:
+    DEBUG = True
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+    
+    INSTALLED_APPS = [
+        'jrv.apps.JrvConfig',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+    ]
+    
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+    MEDIA_URL = '/uploads/'
 
 
 # Password validation
@@ -120,6 +170,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/uploads/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
