@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% block title %}Acta de JRV {{acta.junta}}{% endblock title %}
+
+{% block content %}
+    <h1>Junta {{acta.junta}}</h1>
+    
+    <p>Lasso: {{acta.lasso}}</p>
+    <p>Moreno: {{acta.moreno}}</p>
+    <p>Blancos: {{acta.blancos}}</p>
+    <p>Nulos: {{acta.nulos}}</p>
+    <p>Foto</p>
+    <div><img src="{{acta.foto.url}}" /></div>
+    
+    <hr />
+    
+    <a href="/">Reportar</a> |
+    <a href="/">Ir al inicio</a>
+{% endblock %}

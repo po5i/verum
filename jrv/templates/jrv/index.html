@@ -1,19 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Inicio</title>
-    
-    <!-- TODO: Incluir css y js adicionales aqui (directorio static) -->
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}" />
-    
-    <!-- Bootstrap, para que se vea bonito -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
+{% extends "base.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% block title %}Inicio{% endblock title %}
 
-<body>
+{% block content %}
     <h1>Landing page</h1>
     
     <p>TODO: Mensaje de bienvenida</p>
@@ -84,9 +74,7 @@
       </form>
 
     <a href="/resultados/">Ver resultados</a>
-</body>
 
-</html>
 
 <script>
     document.getElementById('hiddenUseragent').value = navigator.userAgent;
@@ -205,3 +193,5 @@
         startAjax();
     });
 </script>
+
+{% endblock %}
