@@ -6,7 +6,7 @@ class ActaForm(forms.ModelForm):
         model = Acta
         fields = (
             'provincia',
-            'provincia',
+            'parroquia',
             'circunscripcion',
             'zona',
             'canton',

@@ -52,6 +52,8 @@ def register(request):
     
     # TODO: backend validation
     
+    # TODO: reducir tamaño de imagen
+    
     try:
         form = ActaForm(request.POST, request.FILES)
         if form.is_valid():
