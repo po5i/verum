@@ -63,9 +63,10 @@ WSGI_APPLICATION = 'verum.wsgi.application'
 if 'RDS_HOSTNAME' in os.environ:    # AWS - production
     DEBUG = False
     
-    CSRF_COOKIE_SECURE = True
-    CSRF_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SECURE = True
+    # HTTPS
+    #CSRF_COOKIE_SECURE = True
+    #CSRF_COOKIE_HTTPONLY = True
+    #SESSION_COOKIE_SECURE = True
     
     DATABASES = {
         'default': {
