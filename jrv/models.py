@@ -2,9 +2,12 @@ from __future__ import unicode_literals
 import time
 import os
 from django.db import models
+from django.utils.crypto import get_random_string
 
-def get_image_path(self,filename):
-    filename = time.strftime("%Y%m%d-%H%M%S") + filename
+def get_image_path(self, filename):
+    #filename = time.strftime("%Y%m%d-%H%M%S") + filename
+    random = get_random_string()
+    filename = time.strftime("%Y%m%d-%H%M%S") + "-" + random
     return os.path.join("actas", filename)
 
 # Create your models here.

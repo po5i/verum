@@ -52,7 +52,7 @@ def register(request):
     
     # TODO: backend validation
     
-    # TODO: reducir tamaño de imagen
+    # TODO: reducir tamano de imagen
     
     try:
         form = ActaForm(request.POST, request.FILES)
