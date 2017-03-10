@@ -6,18 +6,57 @@
 {% block content %}
     <h1>Resultados</h1>
     
-    <p>Lasso: {{lasso}}</p>
-    <p>Moreno: {{moreno}}</p>
-    <p>Blancos: {{blancos}}</p>
-    <p>Nulos: {{nulos}}</p>
+    <p><img src="/static/img/creo.png" width="40px" /> Guillermo Lasso: {{lasso}}</p>
+    <p><img src="/static/img/ap.png" width="30px" /> Lenin Moreno: {{moreno}}</p>
+    <p><img src="/static/img/blanco.png" width="25px" /> Blancos: {{blancos}}</p>
+    <p><img src="/static/img/nulo.png" width="25px" /> Nulos: {{nulos}}</p>
     
+	<center><div id="chartContainer" style="width: 50%; height: 300px"></div> </center>
+	
     <h3>Actas individuales</h3>
     {% for acta in actas %}
-    <a href="/acta/{{acta.id}}/">{{acta.junta}}</a> 
+    <a href="/acta/{{acta.id}}/">{{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}}</a> <br/>
     {% endfor %}
     
     
     <hr />
     <a href="/opendata/">Descargar data</a> |
     <a href="/">Ir al inicio</a>
+	
+	
+	<script type="text/javascript"> 
+		window.onload = function() { 
+			total = {{lasso}}+{{moreno}}+{{blancos}}+{{nulos}};
+			$("#chartContainer").CanvasJSChart({ 
+				title: { 
+					text: "Porcentaje",
+					fontSize: 24
+				}, 
+				axisY: { 
+					title: "Votos" 
+				}, 
+				legend :{ 
+					verticalAlign: "center", 
+					horizontalAlign: "right" 
+				}, 
+				data: [ 
+				{ 
+					type: "pie", 
+					showInLegend: true, 
+					toolTipContent: "{label} <br/> {y} %", 
+					indexLabel: "{y} %", 
+					dataPoints: [ 
+						{ label: "Guillermo Lasso",  y: ({{lasso}}*100/total).toFixed(2), legendText: "CREO-SUMA"}, 
+						{ label: "Lenin Moreno",    y: ({{moreno}}*100/total).toFixed(2), legendText: "Alianza País" }, 
+						{ label: "Blancos",   y: ({{blancos}}*100/total).toFixed(2),  legendText: "Blancos" }, 
+						{ label: "Nulos",       y: ({{nulos}}*100/total).toFixed(2),  legendText: "Nulos"}
+						
+					] 
+				} 
+				] 
+			}); 
+		} 
+	</script> 
+	
+	
 {% endblock %}
