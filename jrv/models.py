@@ -7,7 +7,7 @@ from django.utils.crypto import get_random_string
 def get_image_path(self, filename):
     #filename = time.strftime("%Y%m%d-%H%M%S") + filename
     random = get_random_string()
-    filename = time.strftime("%Y%m%d-%H%M%S") + "-" + random
+    filename = time.strftime("%Y%m%d-%H%M%S") + "-" + random + ".jpg"
     return os.path.join("actas", filename)
 
 # Create your models here.
