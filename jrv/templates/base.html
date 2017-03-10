@@ -5,8 +5,8 @@
     <title>{% block title %}{% endblock %}</title>
     
     <!-- TODO: Incluir estilos aqui (directorio static) -->
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'styles/landing.css' %}" />
+    <!--link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}" /-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/root.css' %}" />
     
     <!-- Bootstrap, para que se vea bonito -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -15,13 +15,18 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
+	<!-- Librerias jquery de interfaz -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
+	<!-- Descripcion -->
 	<meta name="description" content="La Urna de Vidrio, para unas elecciones transparentes">
 	<meta name="keywords" content="votaciones, ecuador, elecciones, urna, jrv">
 	
+	<!-- Iconos de presentacion -->
 	<link rel="shortcut icon" type="image/x-icon" href="/static/img/icon.png" />
 	<link rel="icon" type="image/png" href="/static/img/icon.png">
 	<link rel="apple-touch-icon" href="/static/img/icon.png">
@@ -30,16 +35,27 @@
 <body>
 	<!-- Start Top -->
 	<div id="top" class="clearfix">
-	  <div class="col-sm-3 logo"><img src="/static/img/icon.png" alt="urna de vidrio" width="50px" /></div>
+	  <div class="col-sm-3 logo"><img src="/static/img/logo2.png" alt="urna de vidrio" width="160px" style="vertical-align: text-top;" /></div>
 	  <ul class="col-sm-9 menu">
 		<li><a href="/">Inicio</a></li>
-		<li><a href="/#formulario">Formulario</a></li>
+		<li><a href="/#formulario" class="btn btn-success">Formulario</a></li>
 		<li><a href="/resultados/">Resultados</a></li>
-		<li><a href="#contactanos">Contáctanos</a></li>
+		<li><a href="/contactenos/">Contáctanos</a></li>
 	  </ul>
 	</div>
 	<!-- End Top -->
-{% block content %}{% endblock %}
+	
+	{% block content %}{% endblock %}
+
+	<!-- Start Footer -->
+	<div id="footer">
+	  <p>Urna de Vidrio - 2017 Derechos Reservados</p>
+		<ul class="menu">
+		<li><a href="mailto:urnadevidrio@gmail.com">urnadevidrio@gmail.com</a></li>
+	  </ul>
+	</div>
+	<!-- End Footer -->
+
 </body>
 
 </html>
