@@ -11,6 +11,7 @@ class ActaForm(forms.ModelForm):
             'zona',
             'canton',
             'junta',
+            'genero',
             'lasso',
             'moreno',
             'blancos',
