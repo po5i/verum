@@ -5,6 +5,8 @@
 
 {% block content %}
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <!-- Start Posts -->
 <div class="post">
 	<div class="container">
@@ -55,47 +57,39 @@
 		
 			
 			<div class="col col-md-6">
-				<center><div id="chartContainer" style="width: 50%; height: 300px"></div> </center>
+				<center><div id="piechart" style="width: 400px; height: 250px;"></div></center>
 			</div>
 			
-			
+			<div class="col col-md-12">&nbsp;</div>
 		</div>
 	</div>
 </div>
 	
 	
 	<script type="text/javascript"> 
-		window.onload = function() { 
-			total = {{acta.lasso}}+{{acta.moreno}}+{{acta.blancos}}+{{acta.nulos}};
-			$("#chartContainer").CanvasJSChart({ 
-				/*title: { 
-					text: "Porcentaje",
-					fontSize: 24
-				},*/ 
-				axisY: { 
-					title: "Votos" 
-				}, 
-				legend :{ 
-					verticalAlign: "center", 
-					horizontalAlign: "right" 
-				}, 
-				data: [ 
-				{ 
-					type: "pie", 
-					showInLegend: true, 
-					toolTipContent: "{label} <br/> {y} %", 
-					indexLabel: "{y} %", 
-					dataPoints: [ 
-						{ label: "Guillermo Lasso",  y: ({{acta.lasso}}*100/total).toFixed(2), legendText: "CREO-SUMA"}, 
-						{ label: "Lenin Moreno",    y: ({{acta.moreno}}*100/total).toFixed(2), legendText: "Alianza País" }, 
-						{ label: "Blancos",   y: ({{acta.blancos}}*100/total).toFixed(2),  legendText: "Blancos" }, 
-						{ label: "Nulos",       y: ({{acta.nulos}}*100/total).toFixed(2),  legendText: "Nulos"}
+	google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Voto', 'Cantidad'],
+		  ["Lasso",{{acta.lasso}}], 
+		  ["Moreno",{{acta.moreno}}], 
+		  ["Blancos",{{acta.blancos}}], 
+		  ["Nulos",{{acta.nulos}}], 
 						
-					] 
-				} 
-				] 
-			}); 
-		} 
+        ]);
+
+        var options = {
+          //title: 'Resumen'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+	
 	</script> 
 	
 {% endblock %}
