@@ -226,9 +226,9 @@ body {
 }
 /* Comments */
 .comments {
-  padding: 60px 30px;
+  padding: 30px 30px;
   text-align: center;
-  background: #e6ebed;
+  background: #c6cbcd;
 }
 .comments .item {
   width: 600px;
