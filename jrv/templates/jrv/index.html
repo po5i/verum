@@ -4,8 +4,18 @@
 {% block title %}Inicio{% endblock title %}
 
 {% block content %}
-    <h1>Landing page</h1>
-    
+    <!-- Main Box -->
+	<div class="main-box">
+	  <div class="box-cover main-box-cover">
+		<h1>Por unas elecciones transparentes</h1>
+		<h4>Iniciativa independiente para proteger el resultado electoral después de realizado el escrutinio de cada urna, en la junta receptora del voto. Permite subir la fotografía del acta de escrutinio firmada con los resultados finales de cada una de las juntas electorales, más la información de ubicación de la Junta respectiva. </h4>
+		<a href="#formulario" class="btn btn-success">Formulario</a>
+	  </div>
+	</div>
+	<!-- End Main Box -->
+	
+	<h1>Por Elecciones Transparentes</h1>
+    <center><img src="/static/img/logo.png" width="200px" /></center>
     <p>TODO: Mensaje de bienvenida</p>
     
     <h1>Subir resultados</h1>
@@ -18,46 +28,51 @@
           <input type="text" name="provincia" class="form-control" id="inputProvincia" placeholder="Provincia">
         </div>
         <div class="form-group">
-          <label for="inputParroquia">Parroquia</label>
-          <input type="text" name="parroquia" class="form-control" id="inputParroquia" placeholder="Parroquia">
-        </div>
-        <div class="form-group">
           <label for="inputCircunscripcion">Circunscripcion</label>
           <input type="text" name="circunscripcion" class="form-control" id="inputCircunscripcion" placeholder="Circunscripcion">
+        </div>
+		<div class="form-group">
+          <label for="inputCanton">Cantón *</label>
+          <input type="text" name="canton" class="form-control" id="inputCanton" placeholder="Cantón">
+        </div>
+		<div class="form-group">
+          <label for="inputParroquia">Parroquia * </label>
+          <input type="text" name="parroquia" class="form-control" id="inputParroquia" placeholder="Parroquia">
         </div>
         <div class="form-group">
           <label for="inputZona">Zona</label>
           <input type="text" name="zona" class="form-control" id="inputZona" placeholder="Zona">
         </div>
         <div class="form-group">
-          <label for="inputCanton">Cantón *</label>
-          <input type="text" name="canton" class="form-control" id="inputCanton" placeholder="Cantón">
-        </div>
-        <div class="form-group">
           <label for="inputJunta">Junta *</label>
-          <input type="number" name="junta" class="form-control" id="inputJunta" placeholder="Cantón">
+          <input type="number" name="junta" class="form-control" id="inputJunta" placeholder="Junta">
+        </div>
+		<div class="form-group">
+          <label for="inputGenero">Genero *</label><br/>
+		  <input type="radio" name="genero" id="inputGeneroM" value="M"> Masculino <br/>
+		  <input type="radio" name="genero" id="inputGeneroM" value="F"> Femenino <br/>
         </div>
         
         <div class="form-group">
           <label for="inputFoto">Foto del Acta *</label>
-          <input type="file" id="inputFoto" name="foto">
+          <input type="file" id="inputFoto" name="foto" accept=".jpg,.png,.jpeg">
           <p class="help-block">Sube una foto aquí.</p>
         </div>
         
         <div class="form-group">
-          <label for="inputLasso">Guillermo Lasso</label>
-          <input type="number" name="lasso" class="form-control" id="inputLasso" placeholder="Votos">
+          <label for="inputLasso">Guillermo Lasso <img src="/static/img/creo.png" width="50px" /></label>
+          <input type="number" name="lasso" class="form-control" id="inputLasso" placeholder="Votos">		  
         </div>
         <div class="form-group">
-          <label for="inputMoreno">Lenin Moreno</label>
+          <label for="inputMoreno">Lenin Moreno <img src="/static/img/ap.png" width="30px" /></label>
           <input type="number" name="moreno" class="form-control" id="inputMoreno" placeholder="Votos">
         </div>
         <div class="form-group">
-          <label for="inputBlancos">Blancos</label>
+          <label for="inputBlancos">Blancos <img src="/static/img/blanco.png" width="30px" /></label>
           <input type="number" name="blancos" class="form-control" id="inputBlancos" placeholder="Votos">
         </div>
         <div class="form-group">
-          <label for="inputNulos">Nulos</label>
+          <label for="inputNulos">Nulos <img src="/static/img/nulo.png" width="30px" /></label>
           <input type="number" name="nulos" class="form-control" id="inputNulos" placeholder="Votos">
         </div>
         
@@ -153,6 +168,7 @@
         formData.append("zona", $('#inputZona').val());
         formData.append("canton", $('#inputCanton').val());
         formData.append("junta", $('#inputJunta').val());
+		formData.append("genero", $('#inputJunta').val());
         formData.append("lasso", $('#inputLasso').val());
         formData.append("moreno", $('#inputMoreno').val());
         formData.append("blancos", $('#inputBlancos').val());
