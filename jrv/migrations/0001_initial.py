@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
                 ('circunscripcion', models.CharField(blank=True, max_length=200, null=True)),
                 ('canton', models.CharField(max_length=200)),
                 ('junta', models.CharField(max_length=200)),
+                ('genero', models.CharField(max_length=200)),
                 ('lasso', models.IntegerField()),
                 ('moreno', models.IntegerField()),
                 ('blancos', models.IntegerField()),
