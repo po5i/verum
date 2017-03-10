@@ -48,8 +48,8 @@
         </div>
 		<div class="form-group">
           <label for="inputGenero">Genero *</label><br/>
-		  <input type="radio" name="genero" id="inputGeneroM" value="M"> Masculino <br/>
-		  <input type="radio" name="genero" id="inputGeneroM" value="F"> Femenino <br/>
+		  <input type="radio" name="inputGenero" id="inputGeneroM" value="M"> Masculino <br/>
+		  <input type="radio" name="inputGenero" id="inputGeneroF" value="F"> Femenino <br/>
         </div>
         
         <div class="form-group">
@@ -165,7 +165,7 @@
         formData.append("zona", $('#inputZona').val());
         formData.append("canton", $('#inputCanton').val());
         formData.append("junta", $('#inputJunta').val());
-				formData.append("genero", $('#inputJunta').val());
+	formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
         formData.append("lasso", $('#inputLasso').val());
         formData.append("moreno", $('#inputMoreno').val());
         formData.append("blancos", $('#inputBlancos').val());
@@ -208,5 +208,44 @@
         startAjax();
     });
 </script>
+
+
+<script>
+  $( function() {
+    var provincias = [
+      "AZUAY",
+      "BOLIVAR",
+	"CAÑAR",
+	  "CARCHI",
+	  "COTOPAXI",
+	  "CHIMBORAZO",
+	  "EL ORO",
+	  "ESMERALDAS",
+	  "GUAYAS",
+	  "IMBABURA",
+	  "LOJA",
+      "LOS RIOS",
+	  "MANABI",
+	  "MORONA SANTIAGO",
+	  "NAPO",
+	  "PASTAZA",
+	  "PICHINCHA",
+	  "TUNGURAHUA",
+	  "ZAMORA CHINCHIPE",
+	  "GALAPAGOS",
+	  "SUCUMBIOS",
+	  "ORELLANA",
+	  "SANTO DOMINGO",
+	  "SANTA ELENA",
+	  "EUROPA, ASIA Y OCEANIA",
+	  "ESTADOS UNIDOS Y CANADA",
+	  "AMERICA LATINA, CARIBE Y AFRICA"
+    ];
+    $( "#inputProvincia" ).autocomplete({
+      source: provincias
+    });
+  } );
+  </script>
+
 
 {% endblock %}
