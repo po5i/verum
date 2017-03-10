@@ -4,58 +4,74 @@
 {% block title %}Acta de JRV{% endblock title %}
 
 {% block content %}
-    <h1>JRV: {{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}}</h1>
+
+<!-- Start Posts -->
+<div class="post">
+	<div class="container">
+
+		<!-- HR -->
+		<hr class="container">
+
+		<div class="row get-post">
+		
+			<div class="col col-md-12">
+				<h2 class="title">JRV: {{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}}</h2>   
+			</div>
+		  
+			<div class="col col-md-6">
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width:30px">Partido</th>
+							<th>Candidato</th>
+							<th>Votos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="/static/img/creo.png" width="40px" /></td>
+							<td style="text-align:left">Guillermo Lasso</td>
+							<td>{{acta.lasso}}</td>
+						</tr>
+						<tr>
+							<td><img src="/static/img/ap.png" width="30px" /></td>
+							<td style="text-align:left">Lenin Moreno</td>
+							<td>{{acta.moreno}}</td>
+						</tr>
+						<tr>
+							<td><img src="/static/img/blanco.png" width="25px" /></td>
+							<td style="text-align:left">Blancos</td>
+							<td>{{acta.blancos}}</td>
+						</tr>
+						<tr>
+							<td><img src="/static/img/nulo.png" width="25px" /></td>
+							<td style="text-align:left">Nulos</td>
+							<td>{{acta.nulos}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<a href="{{acta.foto.url}}" target="_blank">Ver Acta</a> | <a href="/">Reportar Acta</a>
+			</div>
+		
+			
+			<div class="col col-md-6">
+				<center><div id="chartContainer" style="width: 50%; height: 300px"></div> </center>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
 	
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Partido</th>
-				<th>Candidato</th>
-				<th>Votos</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><img src="/static/img/creo.png" width="40px" /></td>
-				<td>Guillermo Lasso</td>
-				<td>{{acta.lasso}}</td>
-			</tr>
-			<tr>
-				<td><img src="/static/img/ap.png" width="30px" /></td>
-				<td>Lenin Moreno</td>
-				<td>{{acta.moreno}}</td>
-			</tr>
-			<tr>
-				<td><img src="/static/img/blanco.png" width="25px" /></td>
-				<td>Blancos</td>
-				<td>{{acta.blancos}}</td>
-			</tr>
-			<tr>
-				<td><img src="/static/img/nulo.png" width="25px" /></td>
-				<td>Nulos</td>
-				<td>{{acta.nulos}}</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<center><div id="chartContainer" style="width: 50%; height: 300px"></div> </center>
-	
-    <h3>Acta</h3>
-    
-	<div style="text-align: center;"><img src="{{acta.foto.url}}" /></div>
-    
-    <hr />
-    
-    <a href="/">Reportar</a> |
 	
 	<script type="text/javascript"> 
 		window.onload = function() { 
 			total = {{acta.lasso}}+{{acta.moreno}}+{{acta.blancos}}+{{acta.nulos}};
 			$("#chartContainer").CanvasJSChart({ 
-				title: { 
+				/*title: { 
 					text: "Porcentaje",
 					fontSize: 24
-				}, 
+				},*/ 
 				axisY: { 
 					title: "Votos" 
 				}, 
