@@ -11,6 +11,10 @@ def index(request):
     context = {}
     return render(request, 'jrv/index.html', context)
 
+def contactenos(request):
+    context = {}
+    return render(request, 'jrv/contactenos.html', context)
+	
 def resultados(request):
     actas = Acta.objects.all()
     
