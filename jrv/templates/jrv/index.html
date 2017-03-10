@@ -14,10 +14,9 @@
 	</div>
 	<!-- End Main Box -->
 	
-	<h1>Por Elecciones Transparentes</h1>
     <center><img src="/static/img/logo.png" width="200px" /></center>
-    <p>TODO: Mensaje de bienvenida</p>
     
+
     <h1>Subir resultados</h1>
 
       <form id="formulario" enctype="multipart/form-data">
@@ -87,10 +86,8 @@
         
         <!-- TODO: captcha -->
         
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
       </form>
-
-    <a href="/resultados/">Ver resultados</a>
 
 
 <script>
@@ -168,7 +165,7 @@
         formData.append("zona", $('#inputZona').val());
         formData.append("canton", $('#inputCanton').val());
         formData.append("junta", $('#inputJunta').val());
-		formData.append("genero", $('#inputJunta').val());
+				formData.append("genero", $('#inputJunta').val());
         formData.append("lasso", $('#inputLasso').val());
         formData.append("moreno", $('#inputMoreno').val());
         formData.append("blancos", $('#inputBlancos').val());

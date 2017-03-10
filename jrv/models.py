@@ -18,6 +18,7 @@ class Acta(models.Model):
     zona = models.CharField(max_length=200,blank=True,null=True)
     canton = models.CharField(max_length=200)
     junta = models.CharField(max_length=200)
+    genero = models.CharField(max_length=10,blank=True,null=True)
     
     lasso = models.IntegerField()
     moreno = models.IntegerField()

@@ -5,21 +5,48 @@
 
 {% block content %}
     <h1>JRV: {{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}}</h1>
-    
-    <p>Guillermo Lasso: {{acta.lasso}}</p>
-    <p>Lenin Moreno: {{acta.moreno}}</p>
-    <p>Blancos: {{acta.blancos}}</p>
-    <p>Nulos: {{acta.nulos}}</p>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Partido</th>
+				<th>Candidato</th>
+				<th>Votos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><img src="/static/img/creo.png" width="40px" /></td>
+				<td>Guillermo Lasso</td>
+				<td>{{acta.lasso}}</td>
+			</tr>
+			<tr>
+				<td><img src="/static/img/ap.png" width="30px" /></td>
+				<td>Lenin Moreno</td>
+				<td>{{acta.moreno}}</td>
+			</tr>
+			<tr>
+				<td><img src="/static/img/blanco.png" width="25px" /></td>
+				<td>Blancos</td>
+				<td>{{acta.blancos}}</td>
+			</tr>
+			<tr>
+				<td><img src="/static/img/nulo.png" width="25px" /></td>
+				<td>Nulos</td>
+				<td>{{acta.nulos}}</td>
+			</tr>
+		</tbody>
+	</table>
 	
 	<center><div id="chartContainer" style="width: 50%; height: 300px"></div> </center>
 	
-    <p>Acta</p>
-    <div><img src="{{acta.foto.url}}" /></div>
+    <h3>Acta</h3>
+    
+	<div style="text-align: center;"><img src="{{acta.foto.url}}" /></div>
     
     <hr />
     
     <a href="/">Reportar</a> |
-    <a href="/">Ir al inicio</a>
 	
 	<script type="text/javascript"> 
 		window.onload = function() { 

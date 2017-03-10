@@ -6,10 +6,37 @@
 {% block content %}
     <h1>Resultados</h1>
     
-    <p><img src="/static/img/creo.png" width="40px" /> Guillermo Lasso: {{lasso}}</p>
-    <p><img src="/static/img/ap.png" width="30px" /> Lenin Moreno: {{moreno}}</p>
-    <p><img src="/static/img/blanco.png" width="25px" /> Blancos: {{blancos}}</p>
-    <p><img src="/static/img/nulo.png" width="25px" /> Nulos: {{nulos}}</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Partido</th>
+				<th>Candidato</th>
+				<th>Votos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><img src="/static/img/creo.png" width="40px" /></td>
+				<td>Guillermo Lasso</td>
+				<td>{{lasso}}</td>
+			</tr>
+			<tr>
+				<td><img src="/static/img/ap.png" width="30px" /></td>
+				<td>Lenin Moreno</td>
+				<td>{{moreno}}</td>
+			</tr>
+			<tr>
+				<td><img src="/static/img/blanco.png" width="25px" /></td>
+				<td>Blancos</td>
+				<td>{{blancos}}</td>
+			</tr>
+			<tr>
+				<td><img src="/static/img/nulo.png" width="25px" /></td>
+				<td>Nulos</td>
+				<td>{{nulos}}</td>
+			</tr>
+		</tbody>
+	</table>
     
 	<center><div id="chartContainer" style="width: 50%; height: 300px"></div> </center>
 	
@@ -21,7 +48,6 @@
     
     <hr />
     <a href="/opendata/">Descargar data</a> |
-    <a href="/">Ir al inicio</a>
 	
 	
 	<script type="text/javascript"> 
