@@ -17,8 +17,6 @@
 	  </div>
 	</div>
 	<!-- End Main Box -->
-	
-    <!--center><img src="/static/img/logo.png" width="200px" /></center-->
     
 
 	<!-- Start FORMULARIO -->
@@ -131,9 +129,11 @@
         </div>
 
 		<div class="col-xs-12">
-			<center><div class="g-recaptcha" data-sitekey="6LeEexgUAAAAAGqwILJOV8kYSRMfB6pqVOp8LQPh"></div></center>
+			<center>
+				<div class="g-recaptcha" data-sitekey="6LeEexgUAAAAAGqwILJOV8kYSRMfB6pqVOp8LQPh"></div>
+			</center>
 		</div>
-		<div class="col-md-12">
+		<div class="col-xs-12">
 			<center>
 				<button type="submit" class="btn btn-primary btn-lg">Enviar Acta</button>
 				<a href="/resultados/" class="btn btn-success btn-lg">Ver Resultados</a>
@@ -229,7 +229,7 @@
         formData.append("zona", $('#inputZona').val());
         formData.append("canton", $('#inputCanton').val());
         formData.append("junta", $('#inputJunta').val());
-		formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
+				formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
         formData.append("lasso", $('#inputLasso').val());
         formData.append("moreno", $('#inputMoreno').val());
         formData.append("blancos", $('#inputBlancos').val());
@@ -249,16 +249,23 @@
             success: function (data) {
                 if (data.flag == "ok") {
                     // TODO: limpiar campos, mostrar mensaje de feedback
-                    console.log('success', data);
+                    swal('Gracias!', 'Has contribuido para un Ecuador transparente', 'success');
+										ga('send', 'event', 'Registro', 'Exito', 'JRV:' + $('#inputJunta').val());
+										console.log('success', data);
+										$('form')[0].reset();
                 } else {
-                    // ERROR. TODO: Mostrar que ocurrió un error
-                    console.log('error', data.message);
+										// data.message
+										swal('Error', 'Asegurate que el formulario esté completo', 'error');
                 }
                 
             },
             error: function (xhr, status, error) {
-                // ERROR. TODO: Mostrar que ocurrió un error
-                console.log('error', error);
+                // error
+								swal('Error', 'Por favor escríbenos informándonos este problema', 'error');
+								ga('send', 'exception', {
+											'exDescription': error,
+											'exFatal': false
+										});
             }
         });
         return false;
