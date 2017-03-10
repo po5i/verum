@@ -370,3 +370,27 @@ body {
 		#myUL li a:hover:not(.header) {
 			background-color: #eee; /* Add a hover effect to all links, except for headers */
 		}
+  
+  
+.main-box2 {
+  background: url("../img/photo_land2.jpg");
+  background-size: cover;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.main-box2 h1 {
+  font-size: 84px;
+  color: #fff;
+  line-height: 1.2em;
+  margin-bottom: 30px;
+  letter-spacing: -0.03em;
+  margin-top: -10px;
+}
+.main-box2 h4 {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7em;
+  margin-bottom: 30px;
+}
+.main-box2 .btn {
+  font-size: 18px;
+}
