@@ -20,5 +20,6 @@ class ActaForm(forms.ModelForm):
             'autor',
             'useragent',
             'latitude',
-            'longitude'
+            'longitude',
+            'notes'
         )

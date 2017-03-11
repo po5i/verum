@@ -52,7 +52,21 @@
 						</tr>
 					</tbody>
 				</table>
-				<a href="{{acta.foto.url}}" target="_blank">Ver Acta</a> | <a href="/">Reportar Acta</a>
+				
+				<h4>Observaciones</h4>
+				
+				{% if acta.flagged %}
+					<div class="alert alert-danger" role="alert">Esta acta está marcada como reportada.</div>
+				{% endif %}
+				
+				{% if acta.success %}
+					<div class="alert alert-danger" role="alert">Esta acta ha sido verificada por nuestro equipo.</div>
+				{% endif %}
+				
+				<p>{{acta.notes |linebreaksbr}}</p>
+				
+				
+				<a href="{{acta.foto.url}}" target="_blank">Ver Acta</a> | <a href="#" onclick="reportar();">Reportar Acta</a>
 			</div>
 		
 			
@@ -66,30 +80,85 @@
 </div>
 	
 	
-	<script type="text/javascript"> 
-	google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Voto', 'Cantidad'],
-		  ["Lasso",{{acta.lasso}}], 
-		  ["Moreno",{{acta.moreno}}], 
-		  ["Blancos",{{acta.blancos}}], 
-		  ["Nulos",{{acta.nulos}}], 
-						
-        ]);
-
-        var options = {
-          //title: 'Resumen'
-		  chartArea:{left:1,top:6,width:"100%",height:"100px"}
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
+	<script type="text/javascript">
+		
+		$( document ).ready(function() {
+			startAjax();
+		});
+		
+		function reportar() {
+			swal({
+				title: "Reportar Irregularidad!",
+				text: "Cuentanos tus observaciones",
+				type: "input",
+				showCancelButton: true,
+				closeOnConfirm: false,
+				showLoaderOnConfirm: true,
+				inputPlaceholder: "Escribe aquí",
+			}, function (inputValue) {
+				if (inputValue === false) {
+					return false;
+				}
+				if (inputValue === "") {
+				  swal.showInputError("Es necesario escribir algo para reportar");
+				  return false
+				}
+				
+				// AJAX
+				swal("Gracias!", "Guardando");
+				
+				$.ajax({
+					url: '/reportar/{{acta.id}}/',
+					type: 'post',
+					data: {
+						notes: inputValue
+					},      
+								
+					success: function (data) {
+						if (data.flag == "ok") {
+							swal("Gracias!", "Tus comentarios serán revisados");
+							ga('send', 'event', 'Registro', 'Exito', 'JRV:' + $('#inputJunta').val());
+							console.log('success', data);
+						} else {
+							// data.message
+							swal('Error', 'Asegurate que el formulario esté completo', 'error');
+						}
+					},
+					error: function (xhr, status, error) {
+						// error
+						swal('Error', 'Por favor escríbenos informándonos este problema', 'error');
+						ga('send', 'exception', {
+							'exDescription': error,
+							'exFatal': false
+						});
+					}
+				});
+			});
+		}
+		
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+		
+		function drawChart() {
+		
+		  var data = google.visualization.arrayToDataTable([
+			['Voto', 'Cantidad'],
+			["Lasso",{{acta.lasso}}], 
+			["Moreno",{{acta.moreno}}], 
+			["Blancos",{{acta.blancos}}], 
+			["Nulos",{{acta.nulos}}], 
+						  
+		  ]);
+		
+		  var options = {
+			//title: 'Resumen'
+			chartArea:{left:1,top:6,width:"100%",height:"100px"}
+		  };
+		
+		  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		
+		  chart.draw(data, options);
+		}
 	
 	</script> 
 	

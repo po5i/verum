@@ -45,6 +45,24 @@ def acta(request, acta_id):
         return render(request, 'jrv/acta.html', context)
     except:
         raise Http404
+    
+def reportar(request, acta_id):
+    try:
+        acta = Acta.objects.get(id=acta_id)
+        acta.flagged = True
+        notes = request.POST.get("notes", "")
+        
+        # concatenar observaciones
+        acta.notes = acta.notes + "\n" + notes
+        
+        acta.save()
+        
+        data = {
+            "flag": "ok",
+        }
+        return JsonResponse(data)
+    except:
+        raise Http404
 
 def opendata(request):
     data = serializers.serialize("json", Acta.objects.all())
