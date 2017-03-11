@@ -63,6 +63,7 @@
 				</div>
 	
 				<div class="col col-md-6">
+					<br/>
 					<center><div id="piechart" style="width: 300px; height: 250px;"></div></center>
 				</div>
 			</div>
@@ -86,6 +87,7 @@
 				<li><a href="/acta/{{acta.id}}/">{{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}} 
 					{% if acta.verified1 == False and acta.verified2 == False  %} <img src="/static/img/warning.png" alt="por verificar" width="20px" /> {% endif %}
 					{% if acta.verified1 == True and acta.verified2 == False  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
+					{% if acta.verified1 == False and acta.verified2 == True  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
 					{% if acta.verified1 == True and acta.verified2 == True  %} <img src="/static/img/check.png" alt="segunda validacion" width="15px" /><img src="/static/img/check.png" alt="warning" width="15px" />  {% endif %}</a></li>
 				{% endfor %}
 			</ul>
@@ -114,7 +116,7 @@
         ]);
 
         var options = {
-          //title: 'Resumen'
+          //title: 'Grafica',
 		  chartArea:{left:1,top:6,width:"100%",height:"100px"}
         };
 
