@@ -215,11 +215,11 @@
             contentType: false,
             processData: false,
             data: formData,      
-						beforeSend: function(){
-							$('.ajax-loader').css("visibility", "visible");
-						},
+	beforeSend: function(){
+		$('.ajax-loader').css("visibility", "visible");
+	},
             success: function (data) {
-							$('.ajax-loader').css("visibility", "visible");
+							
                 if (data.flag == "ok") {
                     swal('Gracias!', 'Has contribuido para un Ecuador transparente', 'success');
 										ga('send', 'event', 'Registro', 'Exito', 'JRV:' + $('#inputJunta').val());
