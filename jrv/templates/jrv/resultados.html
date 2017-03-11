@@ -8,94 +8,95 @@
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	
-	
-	
 	<!-- Start Posts -->
-<div class="post">
-  <div class="container">
+	<div class="post">
+		<div class="container">
 
-    <!-- HR -->
-    <hr class="container">
+			<!-- HR -->
+			<hr class="container">
 		
-		<div class="alert alert-warning alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Advertencia!</strong> Toda información ingresada previo al 02-04-2017 será borrada.
-			El ingreso de actas estará abierto el mismo día a partir de las 17:00.
-		</div>
+			<div class="alert alert-warning alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong>Advertencia!</strong> Toda información ingresada previo al 02-04-2017 será borrada.
+				El ingreso de actas estará abierto el mismo día a partir de las 17:00.
+			</div>
 
-    <div class="row get-post">
-	  <div class="col col-md-12">
-			<h2 class="title">Resumen Resultados</h2>
-	  </div>
+			<div class="row get-post">
+				<div class="col col-md-12">
+					<h2 class="title">Resumen Resultados</h2>
+				</div>
 		
 		
-      <div class="col col-md-6">
+				<div class="col col-md-6">
         
-        <table class="table">
-		<thead>
-			<tr>
-				<th style="width:30px">Partido</th>
-				<th>Candidato</th>
-				<th>Votos</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><img src="/static/img/creo.png" width="40px" /></td>
-				<td style="text-align:left">Guillermo Lasso</td>
-				<td>{{lasso}}</td>
-			</tr>
-			<tr>
-				<td><img src="/static/img/ap.png" width="30px" /></td>
-				<td style="text-align:left">Lenin Moreno</td>
-				<td>{{moreno}}</td>
-			</tr>
-			<tr>
-				<td><img src="/static/img/blanco.png" width="25px" /></td>
-				<td style="text-align:left">Blancos</td>
-				<td>{{blancos}}</td>
-			</tr>
-			<tr>
-				<td><img src="/static/img/nulo.png" width="25px" /></td>
-				<td style="text-align:left">Nulos</td>
-				<td>{{nulos}}</td>
-			</tr>
-		</tbody>
-	</table>
-      </div>
-      <div class="col col-md-6">
-		<center><div id="piechart" style="width: 400px; height: 250px;"></div></center>
-      </div>
-    </div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width:30px">Partido</th>
+								<th>Candidato</th>
+								<th>Votos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><img src="/static/img/creo.png" width="40px" alt="creo" /></td>
+								<td style="text-align:left">Guillermo Lasso</td>
+								<td>{{lasso}}</td>
+							</tr>
+							<tr>
+								<td><img src="/static/img/ap.png" width="30px" alt="ap" /></td>
+								<td style="text-align:left">Lenin Moreno</td>
+								<td>{{moreno}}</td>
+							</tr>
+							<tr>
+								<td><img src="/static/img/blanco.png" width="25px" alt="blanco" /></td>
+								<td style="text-align:left">Blancos</td>
+								<td>{{blancos}}</td>
+							</tr>
+							<tr>
+								<td><img src="/static/img/nulo.png" width="25px" alt="nulo" /></td>
+								<td style="text-align:left">Nulos</td>
+								<td>{{nulos}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	
+				<div class="col col-md-6">
+					<center><div id="piechart" style="width: 300px; height: 250px;"></div></center>
+				</div>
+			</div>
 
-
-  </div>
-</div>
+		</div>
+	</div>
 <!-- End Posts -->
 	
 	
 	
-<!-- Start Comments -->
-<div class="comments">
+	<!-- Start Comments -->
+	<div class="comments">
 
-  <h2 class="pagetitle">Busca Actas</h2>
+	  <h2 class="pagetitle">Buscar Acta</h2>
 
-    <div class="item">
-      	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Acta">
+		<div class="item">
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Ingresa Texto">
+			<img src="/static/img/warning.png" alt="por verificar" width="20px" />: Por Validar &nbsp;&nbsp;&nbsp; <img src="/static/img/check.png" alt="por verificar" width="20px" /> Validado
+			<ul id="myUL">  
+				{% for acta in actas %}
+				<li><a href="/acta/{{acta.id}}/">{{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}} 
+					{% if acta.verified1 == False and acta.verified2 == False  %} <img src="/static/img/warning.png" alt="por verificar" width="20px" /> {% endif %}
+					{% if acta.verified1 == True and acta.verified2 == False  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
+					{% if acta.verified1 == True and acta.verified2 == True  %} <img src="/static/img/check.png" alt="segunda validacion" width="15px" /><img src="/static/img/check.png" alt="warning" width="15px" />  {% endif %}</a></li>
+				{% endfor %}
+			</ul>
+			<br/>
+			<a href="/opendata/">Descargar Data JSON</a>
+		</div>
+
+	</div>
+	<!-- End Comments -->
+
 		
-		<ul id="myUL">  
-			{% for acta in actas %}
-			<li><a href="/acta/{{acta.id}}/">{{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}}</a></li>
-			{% endfor %}
-		</ul>
-		<br/>
-		<a href="/opendata/">Descargar Data JSON</a>
-    </div>
-
-</div>
-<!-- End Comments -->
-
-	
 	
 	<script type="text/javascript"> 
 	google.charts.load('current', {'packages':['corechart']});
@@ -114,6 +115,7 @@
 
         var options = {
           //title: 'Resumen'
+		  chartArea:{left:1,top:6,width:"100%",height:"100px"}
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
