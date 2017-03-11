@@ -244,7 +244,7 @@
         formData.append("zona", $('#inputZona').val());
         formData.append("canton", $('#inputCanton').val());
         formData.append("junta", $('#inputJunta').val());
-		formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
+				formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
         formData.append("lasso", $('#inputLasso').val());
         formData.append("moreno", $('#inputMoreno').val());
         formData.append("blancos", $('#inputBlancos').val());
@@ -253,7 +253,9 @@
         formData.append("useragent", $('#hiddenUseragent').val());
         formData.append("latitude", $('#hiddenLatitude').val());
         formData.append("longitude", $('#hiddenLongitude').val());
-		formData.append("observaciones", $('#inputObservaciones').val());
+				formData.append("notes", $('#inputObservaciones').val());
+				formData.append("csrfmiddlewaretoken", $('form')[0].csrfmiddlewaretoken.value);
+				
         
         $.ajax({
             url: '/register/',
