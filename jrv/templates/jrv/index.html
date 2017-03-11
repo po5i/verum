@@ -244,7 +244,7 @@
         formData.append("zona", $('#inputZona').val());
         formData.append("canton", $('#inputCanton').val());
         formData.append("junta", $('#inputJunta').val());
-				formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
+		formData.append("genero", $('input[name=inputGenero]:checked', '#formulario').val());
         formData.append("lasso", $('#inputLasso').val());
         formData.append("moreno", $('#inputMoreno').val());
         formData.append("blancos", $('#inputBlancos').val());
@@ -253,6 +253,7 @@
         formData.append("useragent", $('#hiddenUseragent').val());
         formData.append("latitude", $('#hiddenLatitude').val());
         formData.append("longitude", $('#hiddenLongitude').val());
+		formData.append("observaciones", $('#inputObservaciones').val());
         
         $.ajax({
             url: '/register/',
@@ -261,7 +262,11 @@
             contentType: false,
             processData: false,
             data: formData,      
+			beforeSend: function(){
+				$('.ajax-loader').css("visibility", "visible");
+			},
             success: function (data) {
+			$('.ajax-loader').css("visibility", "visible");
                 if (data.flag == "ok") {
                     // TODO: limpiar campos, mostrar mensaje de feedback
                     swal('Gracias!', 'Has contribuido para un Ecuador transparente', 'success');
@@ -274,13 +279,16 @@
                 }
                 
             },
+			complete: function(){
+				$('.ajax-loader').css("visibility", "hidden");
+			},
             error: function (xhr, status, error) {
                 // error
-								swal('Error', 'Por favor escríbenos informándonos este problema', 'error');
-								ga('send', 'exception', {
-											'exDescription': error,
-											'exFatal': false
-										});
+					swal('Error', 'Por favor escríbenos informándonos este problema', 'error');
+					ga('send', 'exception', {
+								'exDescription': error,
+								'exFatal': false
+							});
             }
         });
         return false;
