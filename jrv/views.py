@@ -53,7 +53,10 @@ def reportar(request, acta_id):
         notes = request.POST.get("notes", "")
         
         # concatenar observaciones
-        acta.notes = acta.notes + "\n" + notes
+        if acta.notes:
+            acta.notes = acta.notes + "\n" + str(notes)
+        else:
+            acta.notes = str(notes)
         
         acta.save()
         
@@ -61,7 +64,8 @@ def reportar(request, acta_id):
             "flag": "ok",
         }
         return JsonResponse(data)
-    except:
+    except Exception as e:
+        print str(e)
         raise Http404
 
 def opendata(request):
