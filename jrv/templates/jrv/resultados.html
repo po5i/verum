@@ -79,17 +79,55 @@
 	  <h2 class="pagetitle">Buscar Acta</h2>
 
 		<div class="item">
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Ingresa Texto">
+			
 			<img src="/static/img/warning.png" alt="por verificar" width="20px" />: Por Validar &nbsp;&nbsp;&nbsp; <img src="/static/img/check.png" alt="por verificar" width="20px" /> Validado
-			<ul id="myUL">  
-				{% for acta in actas %}
-				<li><a href="/acta/{{acta.id}}/">{{acta.provincia}} - {{acta.circunscripcion}} - {{acta.canton}} - {{acta.parroquia}} - {{acta.zona}} - {{acta.junta}}{{acta.genero}} 
-					{% if acta.verified1 == False and acta.verified2 == False  %} <img src="/static/img/warning.png" alt="por verificar" width="20px" /> {% endif %}
-					{% if acta.verified1 == True and acta.verified2 == False  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
-					{% if acta.verified1 == False and acta.verified2 == True  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
-					{% if acta.verified1 == True and acta.verified2 == True  %} <img src="/static/img/check.png" alt="segunda validacion" width="15px" /><img src="/static/img/check.png" alt="warning" width="15px" />  {% endif %}</a></li>
-				{% endfor %}
-			</ul>
+				<table class="table" id="actas">
+					<thead>
+					<tr>
+						<th></th>
+						<th>Provincia</th>
+						<th>Circunscripcion</th>
+						<th>Cantón</th>
+						<th>Parroquia</th>
+						<th>Zona</th>
+						<th>Junta</th>
+						<th>Verificado</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for acta in actas %}
+					<tr>
+						<td>
+							<a href="/acta/{{acta.id}}/">Ver acta</a>
+						</td>
+						<td>
+							{{acta.provincia}}
+						</td>
+						<td>
+							{{acta.circunscripcion}}
+						</td>
+						<td>
+							{{acta.canton}}
+						</td>
+						<td>
+							{{acta.parroquia}}
+						</td>
+						<td>
+							{{acta.zona}}
+						</td>
+						<td>
+							{{acta.junta}}{{acta.genero}}
+						</td>
+						<td>
+							{% if acta.verified1 == False and acta.verified2 == False  %} <img src="/static/img/warning.png" alt="por verificar" width="20px" /> {% endif %}
+							{% if acta.verified1 == True and acta.verified2 == False  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
+							{% if acta.verified1 == False and acta.verified2 == True  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
+							{% if acta.verified1 == True and acta.verified2 == True  %} <img src="/static/img/check.png" alt="segunda validacion" width="15px" /><img src="/static/img/check.png" alt="warning" width="15px" />  {% endif %}
+						</td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
 			<br/>
 			<a href="/opendata/">Descargar Data JSON</a>
 		</div>
@@ -100,7 +138,7 @@
 		
 	
 	<script type="text/javascript"> 
-	google.charts.load('current', {'packages':['corechart']});
+	  google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
@@ -127,24 +165,9 @@
 	</script> 
 	
 	<script>
-		function myFunction() {
-			// Declare variables
-			var input, filter, ul, li, a, i;
-			input = document.getElementById('myInput');
-			filter = input.value.toUpperCase();
-			ul = document.getElementById("myUL");
-			li = ul.getElementsByTagName('li');
-
-			// Loop through all list items, and hide those who don't match the search query
-			for (i = 0; i < li.length; i++) {
-				a = li[i].getElementsByTagName("a")[0];
-				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-					li[i].style.display = "";
-				} else {
-					li[i].style.display = "none";
-				}
-			}
-		}
+		$(document).ready(function(){
+			$('#actas').DataTable();
+		});
 	</script>
 	
 	
