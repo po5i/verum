@@ -80,7 +80,7 @@
 
 		<div class="item">
 			
-			<img src="/static/img/warning.png" alt="por verificar" width="20px" />: Por Validar &nbsp;&nbsp;&nbsp; <img src="/static/img/check.png" alt="por verificar" width="20px" /> Validado
+			<img src="/static/img/bug.png" alt="reportado" width="20px" />: Reportado &nbsp;&nbsp;&nbsp; <img src="/static/img/warning.png" alt="por verificar" width="20px" />: Por Validar &nbsp;&nbsp;&nbsp; <img src="/static/img/check.png" alt="por verificar" width="20px" /> Validado
 				<table class="table" id="actas">
 					<thead>
 					<tr>
@@ -119,6 +119,7 @@
 							{{acta.junta}}{{acta.genero}}
 						</td>
 						<td>
+							{% if acta.flagged == True %} <img src="/static/img/bug.png" alt="reportado" width="15px" /> {% endif %}
 							{% if acta.verified1 == False and acta.verified2 == False  %} <img src="/static/img/warning.png" alt="por verificar" width="20px" /> {% endif %}
 							{% if acta.verified1 == True and acta.verified2 == False  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
 							{% if acta.verified1 == False and acta.verified2 == True  %} <img src="/static/img/check.png" alt="primera validacion" width="15px" /> {% endif %}
