@@ -233,7 +233,7 @@ body {
 .comments .item {
   width: 600px;
   margin: 0px auto;
-  background-color: aliceblue;	
+  background-color: aliceblue;
 }
 .comments .profileimg {
   width: 80px;
@@ -256,6 +256,8 @@ body {
 }
 .faq .item {
   margin: 40px 0;
+  background-color: ghostwhite;
+  padding: 10px;
 }
 .faq .item .title {
   font-size: 18px;
