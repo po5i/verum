@@ -75,7 +75,7 @@ def reportar(request, acta_id):
         }
         return JsonResponse(data)
     except Exception as e:
-        print str(e)
+        print(str(e))
         raise Http404
 
 def opendata(request):
