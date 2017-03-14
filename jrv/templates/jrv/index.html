@@ -3381,16 +3381,29 @@
 	];
 	
 		$( "#inputProvincia" ).autocomplete({
-				source: provincias
+				source: provincias,
+				change: function(event,ui){
+					$(this).val((ui.item ? ui.item.value : ""));
+				}
 		});
+		
 		$( "#inputCanton" ).autocomplete({
-				source: canton
+				source: canton,
+				change: function(event,ui){
+					$(this).val((ui.item ? ui.item.value : ""));
+				}
 		});
 		$( "#inputParroquia" ).autocomplete({
-				source: parroquia
+				source: parroquia,
+				change: function(event,ui){
+					$(this).val((ui.item ? ui.item.value : ""));
+				}
 		});
 		$( "#inputZona" ).autocomplete({
-				source: zona
+				source: zona,
+				change: function(event,ui){
+					$(this).val((ui.item ? ui.item.value : ""));
+				}
 		});
 	
   } );
