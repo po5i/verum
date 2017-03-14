@@ -41,7 +41,7 @@ body {
 }
 #top .logo {
   color: #399bff;
-  font-size: 36px;
+  font-size: 44px;
   font-weight: bold;
   letter-spacing: -0.04em;
   padding-top: 0px;
@@ -233,6 +233,7 @@ body {
 .comments .item {
   width: 600px;
   margin: 0px auto;
+  background-color: aliceblue;
 }
 .comments .profileimg {
   width: 80px;
@@ -255,6 +256,8 @@ body {
 }
 .faq .item {
   margin: 40px 0;
+  background-color: ghostwhite;
+  padding: 10px;
 }
 .faq .item .title {
   font-size: 18px;

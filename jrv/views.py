@@ -21,6 +21,10 @@ def voluntario(request):
     context = {}
     return render(request, 'jrv/voluntario.html', context)
 	
+def faq(request):
+    context = {}
+    return render(request, 'jrv/faq.html', context)	
+	
 def resultados(request):
     actas = Acta.objects.all()
     
