@@ -7,6 +7,12 @@ from django.core.files.storage import FileSystemStorage
 from django.core import serializers
 from django.http import Http404
 
+try:
+    from PIL import Image, ImageOps
+except ImportError:
+    import Image
+    import ImageOps
+    
 def index(request):
     context = {}
     return render(request, 'jrv/index.html', context)
@@ -75,15 +81,15 @@ def opendata(request):
 
 @csrf_protect
 def register(request):
-    
-    # TODO: backend validation
-    
-    # TODO: reducir tamano de imagen
-    
     try:
         form = ActaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            
+            # TODO: reducir tamano de imagen
+            #image = Image.open('snake.jpg')
+            #image.thumbnail((200,200), Image.ANTIALIAS)
+            #image.save('thumbnail_200_200_aa.jpg', 'JPEG', quality=75)
         
             data = {
                 'flag': 'ok',
