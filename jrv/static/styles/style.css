@@ -233,6 +233,7 @@ body {
 .comments .item {
   width: 600px;
   margin: 0px auto;
+  background-color: aliceblue;	
 }
 .comments .profileimg {
   width: 80px;
