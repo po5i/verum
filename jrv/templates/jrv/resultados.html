@@ -39,12 +39,12 @@
 						<tbody>
 							<tr>
 								<td><img src="/static/img/creo.png" width="40px" alt="creo" /></td>
-								<td style="text-align:left">Guillermo Lasso</td>
+								<td style="text-align:left">Lasso-Paez</td>
 								<td>{{lasso}}</td>
 							</tr>
 							<tr>
 								<td><img src="/static/img/ap.png" width="30px" alt="ap" /></td>
-								<td style="text-align:left">Lenin Moreno</td>
+								<td style="text-align:left">Moreno-Glas</td>
 								<td>{{moreno}}</td>
 							</tr>
 							<tr>
@@ -114,7 +114,7 @@
 							{% if acta.verified1 == True and acta.verified2 == True  %} <img src="/static/img/check.png" alt="segunda validacion" width="15px" /><img src="/static/img/check.png" alt="warning" width="15px" />  {% endif %}
 						</td>
 						<td>
-							<a href="/acta/{{acta.id}}/">Ver acta</a>
+							<a href="/acta/{{acta.id}}/">Ver Detalle</a>
 						</td>
 					</tr>
 					{% endfor %}
@@ -139,8 +139,8 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Voto', 'Cantidad'],
-		  ["Lasso",{{lasso}}], 
-		  ["Moreno",{{moreno}}], 
+		  ["Lasso-Paez",{{lasso}}], 
+		  ["Moreno-Glas",{{moreno}}], 
 		  ["Blancos",{{blancos}}], 
 		  ["Nulos",{{nulos}}], 
 						
